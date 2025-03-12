@@ -19,20 +19,10 @@ public class Televisao
     {
         if (!Mudo && Volume < 100) Volume++;
     }
-    {
-        if (!Mudo && Volume < 100) Volume++;
-    {
-        if (Volume < 100) Volume++;
-    }
 
     public void DiminuirVolume()
     {
         if (!Mudo && Volume > 0) Volume--;
-    }
-    {
-        if (!Mudo && Volume > 0) Volume--;
-    {
-        if (Volume > 0) Volume--;
     }
 
     public void AlternarModoMudo()
