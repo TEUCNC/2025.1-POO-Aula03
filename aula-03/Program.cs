@@ -1,36 +1,94 @@
-﻿using aula_03;
+﻿using Xunit;
 
-// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+public class Televisao
+{
+    public float Tamanho { get; private set; }
+    public int Volume { get; private set; }
+    public bool Mudo { get; private set; }
+    public int Canal { get; private set; }
 
-Televisao tvSala = new Televisao(22f);
-Console.WriteLine($"O tamanho da tv é: {tvSala.Tamanho}");
+    public Televisao(float tamanho)
+    {
+        Tamanho = tamanho;
+        Volume = 10;
+        Canal = 1;
+        Mudo = false;
+    }
 
-Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
-tvSala.AumentarVolume();
+    public void AumentarVolume()
+    {
+        if (!Mudo && Volume < 100) Volume++;
+    }
+    {
+        if (!Mudo && Volume < 100) Volume++;
+    {
+        if (Volume < 100) Volume++;
+    }
 
-Console.WriteLine($"O tamanho da tv é: {tvSala.Tamanho}");
+    public void DiminuirVolume()
+    {
+        if (!Mudo && Volume > 0) Volume--;
+    }
+    {
+        if (!Mudo && Volume > 0) Volume--;
+    {
+        if (Volume > 0) Volume--;
+    }
 
+    public void AlternarModoMudo()
+    {
+        Mudo = !Mudo;
+    }
+    
+    public void AumentarCanal()
+    {
+        Canal++;
+    }
 
-tvSala.AumentarVolume();
-Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
-tvSala.AumentarVolume();
+    public void DiminuirCanal()
+    {
+        if (Canal > 1) Canal--;
+    }
 
-//Deveria imprimir mudo
-tvSala.AlternarModoMudo();
+    public void SelecionarCanal(int novoCanal)
+    {
+        if (novoCanal > 0) Canal = novoCanal;
+    }
+}
 
-//Deveria imprimir 01
-tvSala.AumentarVolume();
-Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
+public class TelevisaoTests
+{
+    [Fact]
+    public void Deve_Manter_Mudo_Ao_Tentar_Alterar_Volume()
+    {
+        var tv = new Televisao(42f);
+        tv.AlternarModoMudo();
+        tv.AumentarVolume();
+        Assert.Equal(10, tv.Volume);
+    }
 
-//Deveria imprimir mudo
-tvSala.AlternarModoMudo();
+    [Fact]
+    public void Deve_Aumentar_Canal()
+    {
+        var tv = new Televisao(42f);
+        tv.AumentarCanal();
+        Assert.Equal(2, tv.Canal);
+    }
 
-//Deveria imprimir volume 01
-tvSala.AlternarModoMudo();
+    [Fact]
+    public void Deve_Diminuir_Canal()
+    {
+        var tv = new Televisao(42f);
+        tv.AumentarCanal();
+        tv.DiminuirCanal();
+        Assert.Equal(1, tv.Canal);
+    }
 
-tvSala.DiminuirVolume();
-Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
-
-//Deveria imprimir volume 01
-tvSala.AlternarModoMudo();
+    [Fact]
+    public void Deve_Selecionar_Canal_Especifico()
+    {
+        var tv = new Televisao(42f);
+        tv.SelecionarCanal(505);
+        Assert.Equal(505, tv.Canal);
+    }
+}
