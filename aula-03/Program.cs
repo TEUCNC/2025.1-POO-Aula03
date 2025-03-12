@@ -34,9 +34,3 @@ Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
 
 //Deveria imprimir volume 01
 tvSala.AlternarModoMudo();
-
-
-
-
-
-
